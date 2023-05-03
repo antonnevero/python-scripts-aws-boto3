@@ -14,6 +14,15 @@ new_vpc.create_subnet(
     CidrBlock="10.0.2.0/24"
 )
 
+new_vpc.create_tags(
+    Tags=[
+            {
+                'Key': 'Name',
+                'Value': 'em-vpc'
+            },
+    ]
+)
+
 all_available_vpcs = ec2_client.describe_vpcs()
 vpcs = all_available_vpcs["Vpcs"]
 

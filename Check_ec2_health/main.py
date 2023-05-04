@@ -7,4 +7,4 @@ reservations = ec2_client.describe_instances()
 for reservation in reservations['Reservations']:
     instances = reservation['Instances']
     for instance in instances:
-        print(instance['State']['Name'])
+        print(f"Status of instance {instance['InstanceId']} is {instance['State']['Name']}")

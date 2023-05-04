@@ -13,4 +13,5 @@ statuses = ec2_client.describe_instance_status()
 for status in statuses['InstanceStatuses']:
     ins_status = status['InstanceStatus']['Status']
     sys_status = status['SystemStatus']['Status']
-    print(f"Instance {status['InstanceId']} status is {ins_status} and system status is {sys_status}")
+    state = status["InstanceState"]['Name']
+    print(f"Instance {status['InstanceId']} is {state} with instance status is {ins_status} and system status is {sys_status}")

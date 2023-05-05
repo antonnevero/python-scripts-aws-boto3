@@ -14,7 +14,9 @@ def check_instance_ip():
 
 
 def check_instance_status():
-    statuses = ec2_client.describe_instance_status()
+    statuses = ec2_client.describe_instance_status(
+        IncludeAllInstances=True
+    )
     for status in statuses['InstanceStatuses']:
         ins_status = status['InstanceStatus']['Status']
         sys_status = status['SystemStatus']['Status']

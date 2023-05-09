@@ -45,7 +45,12 @@ new_volume = ec2_client.create_volume(
     ]
 )
 
-ec2_resource.Instance(instance_id).attach_volume(
-    VolumeId=new_volume['VolumeId'],
-    Device='/dev/xvdb'
-)
+while True:
+    vol = ec2_resource.Volume(new_volume['VolumeId'])
+    print(vol.state)
+    if vol.state == 'available':
+        ec2_resource.Instance(instance_id).attach_volume(
+            VolumeId=new_volume['VolumeId'],
+            Device='/dev/xvdb'
+        )
+        break

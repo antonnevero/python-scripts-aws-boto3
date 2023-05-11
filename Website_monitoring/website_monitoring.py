@@ -5,7 +5,6 @@ import os
 EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS')
 EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
-
 response = requests.get('http://35.158.218.87/')
 if response.status_code == 200:
     print("Application is running successfully")
@@ -15,3 +14,5 @@ else:
         smtp.starttls()
         smtp.ehlo()
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        msg = 'Subject: SITE DOWN\nFix the issue!'
+        smtp.sendmail(EMAIL_ADDRESS, 'nevero.anton@gmail.com', msg)

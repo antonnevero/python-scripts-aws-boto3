@@ -29,8 +29,7 @@ try:
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect('host???', username='root', key_filename='/home/.../.ssh/id_rsa')
         stdin, stdout, stderr = ssh.exec_command('docker ps')
-        print(stdin)
-        print(stdout)
+        print(stdout.readlines())
 except Exception as ex:
     print(f"Connection error happened: {ex}")
     msg = 'Subject: SITE DOWN\nApp not accessible at all!'

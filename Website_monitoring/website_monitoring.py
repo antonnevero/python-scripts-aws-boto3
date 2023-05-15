@@ -25,11 +25,14 @@ try:
         msg = f"Application returned {response.status_code}"
         send_notification(msg)
 
+        # restart the app
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect('host???', username='root', key_filename='/home/.../.ssh/id_rsa')
-        stdin, stdout, stderr = ssh.exec_command('docker ps')
+        stdin, stdout, stderr = ssh.exec_command('docker start #of_container')
         print(stdout.readlines())
+        ssh.close()
+        print('Application started')
 except Exception as ex:
     print(f"Connection error happened: {ex}")
     msg = 'Subject: SITE DOWN\nApp not accessible at all!'

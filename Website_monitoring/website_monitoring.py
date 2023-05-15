@@ -26,7 +26,10 @@ try:
         send_notification(msg)
 
         ssh = paramiko.SSHClient()
-        ssh.connect('host', )
+        ssh.connect('host???', username='root', key_filename='/home/.../.ssh/id_rsa')
+        stdin, stdout, stderr = ssh.exec_command('docker ps')
+        print(stdin)
+        print(stdout)
 except Exception as ex:
     print(f"Connection error happened: {ex}")
     msg = 'Subject: SITE DOWN\nApp not accessible at all!'

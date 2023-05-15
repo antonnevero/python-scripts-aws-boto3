@@ -26,6 +26,7 @@ try:
         send_notification(msg)
 
         ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect('host???', username='root', key_filename='/home/.../.ssh/id_rsa')
         stdin, stdout, stderr = ssh.exec_command('docker ps')
         print(stdin)

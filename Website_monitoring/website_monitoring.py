@@ -1,6 +1,7 @@
 import requests
 import smtplib
 import os
+import paramiko
 
 EMAIL_ADDRESS = os.environ.get('EMAIL_ADDRESS')
 EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
@@ -23,6 +24,9 @@ try:
         print("Application Down, Fix it!")
         msg = f"Application returned {response.status_code}"
         send_notification(msg)
+
+        ssh = paramiko.SSHClient()
+        ssh.connect('host', )
 except Exception as ex:
     print(f"Connection error happened: {ex}")
     msg = 'Subject: SITE DOWN\nApp not accessible at all!'
